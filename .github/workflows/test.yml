@@ -1,11 +1,10 @@
-
-name: Test Python
+name: Monitor Funding Bitget
 
 on:
   workflow_dispatch:
 
 jobs:
-  test:
+  monitor:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,5 +16,16 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Esegui il test
+      - name: Installa librerie grafico
+        run: python -m pip install matplotlib
+
+      - name: Esegui monitor
         run: python funding_monitor.py
+
+      - name: Salva grafico e dati scaricabili
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bitget-rsr-report
+          path: report/
+          if-no-files-found: warn
