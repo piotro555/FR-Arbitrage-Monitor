@@ -18,4 +18,4 @@ jobs:
           python-version: '3.12'
 
       - name: Esegui il test
-        run: python test_python.py
+        run: python funding_monitor.py
