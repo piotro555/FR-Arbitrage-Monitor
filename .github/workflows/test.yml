@@ -1,0 +1,21 @@
+
+name: Test Python
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Scarica i file
+        uses: actions/checkout@v4
+
+      - name: Installa Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Esegui il test
+        run: python test_python.py
